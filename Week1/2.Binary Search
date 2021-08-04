@@ -1,0 +1,23 @@
+//Given an already sorted array of positive integers, design an algorithm and implement it using a
+//program to find whether a given key element is present in the array or not. Also, find the total
+//number of comparisons for each input case.
+//(Time Complexity = O(logn), where n is the size of input).
+
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+      
+        int left=0, right=nums.size()-1;
+     while(left<=right)  {
+         int mid=(left+right)/2;
+         if(target==nums[mid])
+             return mid;
+         else if(nums[mid]>target)
+             right=mid-1;
+         else 
+             left=mid+1;
+     } 
+        return -1;
+    }
+};
