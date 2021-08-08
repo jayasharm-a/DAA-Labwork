@@ -1,0 +1,53 @@
+//Given an already sorted array of positive integers, design an algorithm and
+//implement it using a program to find whether a given key element is present in the sorted array
+//or not. For an array arr[] of size n and block (to be jumped) size m, search at the indexes arr[0],
+//arr[m], arr[2m].....arr[km] and so on. Once the interval (arr[km] < key < arr[ (k+1)m ]) is found,
+//perform a linear search operation from the index km to find the element key.
+//(Time Complexity = O(√n), where n is the number of elements need to be scanned for
+//searching):
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+int searchb(int nums[], int target,int n) {
+int m = sqrt(n),i=0,c=0,prev;
+
+while(nums[i]<= target && i < n) {
+    c++;
+    prev=i;
+
+    if(nums[i]==target){                           
+    cout<<"Present: ";                           
+    return c;
+    }i=i+m;}
+
+    for(int j=prev+1;j<m||prev<n;j++,prev++){
+    c++;
+    if(nums[j]==target){
+    cout<<"Present ";
+    return c;
+    }else if(nums[j]>target){
+    cout<<"Not Present ";
+    return c;
+    }
+    }
+
+    cout<<"Not Present ";
+    return (c);
+    }
+int main(){
+int n,x,c=0,i;
+cout<<"Enter the limit of element of the array"<<endl;
+cin>>n;
+int a[n];
+
+cout<<"Enter the element into array"<<endl;
+for(i=0;i<n;i++)
+{
+cin>>a[i];
+}
+cout<<"Enter the element to be found"<<endl;
+cin>>x;
+cout<<searchb(a,x,n);
+return 0;
+}
