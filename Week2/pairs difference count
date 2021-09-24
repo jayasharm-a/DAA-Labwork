@@ -1,0 +1,38 @@
+// Given an array of nonnegative integers, WAP to count the no of pairs whose difference is equal to a given key, k. 
+
+#include<iostream>
+using namespace std;
+#include<cmath>
+void first(int a[], int n,int k){
+int c=0;
+for(int i=0;i<n-1;i++)
+for(int j=i+1;j<n;j++){
+    if(abs(a[i]-a[j])==k)
+        c++;
+}
+cout<<c;
+}
+int main(){
+int test,n;
+signed int key;
+
+cout<<"Enter the no.of test cases";
+cin >> test;
+for(int t=0;t<test;t++){
+cout<<"Enter the limit";
+cin>>n;
+int a[n];
+cout<<"Enter the elements in the array";
+for(int i=0;i<n;i++)
+cin>>a[i];
+cout<<"Enter the difference to be searched";
+cin>>key;
+
+
+first(a,n,key);
+
+
+}
+
+return 0;
+}
