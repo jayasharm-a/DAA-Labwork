@@ -1,29 +1,37 @@
 #include<iostream>
 using namespace std;
 
-int Search(int a[], int n, int x,bool searchFirst){
+int first(int a[], int n, int x){
 int low = 0, high = n-1, result = -1;
 while(low<=high){
 int mid = (low+high)/2;
-if(a[mid]==x) {
-    result = mid;
-    if(searchFirst)
-        high = mid-1;
-    else
-        low= mid+1;
-}
+if(a[mid]==x&&a[mid-1]<x)
+    return mid;
 else if(x < a[mid]) high = mid-1;
 else low = mid+1;
 }
-return result;
+return -1;
+}
+
+int last(int a[], int n, int x){
+int low = 0, high = n-1, result = -1;
+while(low<=high){
+int mid = (low+high)/2;
+if(a[mid]==x&&a[mid+1]>x)
+    return mid;
+else if(x < a[mid]) high = mid-1;
+else low = mid+1;
+}
+return -1;
 }
 
 int main(){
 int test,n,key;
+
 cout<<"Enter the no.of test cases";
 cin >> test;
 for(int t=0;t<test;t++){
-        cout<<"Enter the limit";
+cout<<"Enter the limit";
 cin>>n;
 int a[n];
 cout<<"Enter the elements in the array";
@@ -31,11 +39,14 @@ for(int i=0;i<n;i++)
 cin>>a[i];
 cout<<"Enter the key element to be searched";
 cin>>key;
-int first = Search(a,n,key,true);
-if(first == -1)
+
+
+int f = first(a,n,key);
+if(f == -1)
 cout<<key<<"--"<<0;
+
 else{
-int last = Search(a,n,key,false);
-cout<<key<<"--"<<last-first+1;
+int l = last(a,n,key);
+cout<<key<<"--"<<l-f+1;
 }
 }}
